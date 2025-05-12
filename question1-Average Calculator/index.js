@@ -3,10 +3,12 @@ const axios = require('axios');
 const app = express();
 const port = 9876;
 
+require('dotenv').config();
+
 const windowSize = 10;
 let window = [];
 
-const ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQ3MDMwNjkwLCJpYXQiOjE3NDcwMzAzOTAsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6IjkyMTBlYmVkLTFhMGYtNGIyYS1hNGQyLTExNDg4Y2E4Yjg4OSIsInN1YiI6ImFqYXltLjIyY3NlQGtvbmd1LmVkdSJ9LCJlbWFpbCI6ImFqYXltLjIyY3NlQGtvbmd1LmVkdSIsIm5hbWUiOiJhamF5IG0iLCJyb2xsTm8iOiIyMmNzcjAwOSIsImFjY2Vzc0NvZGUiOiJqbXBaYUYiLCJjbGllbnRJRCI6IjkyMTBlYmVkLTFhMGYtNGIyYS1hNGQyLTExNDg4Y2E4Yjg4OSIsImNsaWVudFNlY3JldCI6IkdBQlVEQ2R2aEpEam1YTVEifQ.rIBzH9DjR7Ce8XO2uBN7bxRqRYY3V9Wex37e1QBGqVs"; 
+
 
 async function fetchNumbers(type) {
   const apiUrls = {
@@ -19,7 +21,7 @@ async function fetchNumbers(type) {
   try {
     const response = await axios.get(apiUrls[type], {
       headers: {
-        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+        'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`,
       },
       timeout: 500,
     });
